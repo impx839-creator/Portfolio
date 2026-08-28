@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>พิมพ์นิภา เนียบเกิด | Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Prompt',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fff7fa;
+    color:#444;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{
+    width:8px;
+}
+::-webkit-scrollbar-thumb{
+    background:#ff8fb6;
+    border-radius:20px;
+}
+
+/* Navbar */
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(15px);
+    box-shadow:0 3px 12px rgba(255,170,200,.15);
+    z-index:999;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:700;
+    color:#ff5f9d;
+}
+
+nav a{
+    margin-left:28px;
+    text-decoration:none;
+    color:#666;
+    font-weight:500;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#ff5f9d;
+}
+
+/* ทุก Section */
+section{
+    min-height:100vh;
+    padding:120px 10%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Hero */
+.hero{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:60px;
+    align-items:center;
+}
+
+.hero-text h1{
+    font-size:55px;
+    color:#ff5f9d;
+    line-height:1.2;
+}
+
+.hero-text h2{
+    font-size:24px;
+    color:#777;
+    margin:15px 0;
+}
+
+.hero-text p{
+    color:#777;
+    line-height:1.8;
+    margin:25px 0;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 35px;
+    background:#ff7eb3;
+    color:white;
+    border-radius:50px;
+    text-decoration:none;
+    transition:.35s;
+    box-shadow:0 8px 25px rgba(255,126,179,.3);
+}
+
+.btn:hover{
+    transform:translateY(-5px);
+    background:#ff5f9d;
+}
+
+/* รูปโปรไฟล์ */
+.profile{
+    display:flex;
+    justify-content:center;
+}
+
+.photo-box{
+    width:320px;
+    height:320px;
+    border:4px dashed #ff9fc6;
+    border-radius:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#fff;
+    color:#ff7eb3;
+    text-align:center;
+    font-size:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(255,170,200,.25);
+}
+
+.photo-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Title */
+.title{
+    text-align:center;
+    font-size:42px;
+    color:#ff5f9d;
+    margin-bottom:50px;
+}
+
+/* About */
+.about{
+    flex-direction:column;
+}
+
+.about-card{
+    max-width:900px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(255,180,210,.2);
+    line-height:2;
+    color:#666;
+}
+
+/* Portfolio */
+.portfolio{
+    flex-direction:column;
+}
+
+.grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(255,190,220,.2);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.project-img{
+    height:190px;
+    border-bottom:2px dashed #ffd0e1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#ff6fa8;
+    background:#fff8fb;
+}
+
+.card-body{
+    padding:20px;
+}
+
+.card-body h3{
+    color:#ff5f9d;
+}
+
+.card-body p{
+    margin-top:10px;
+    color:#777;
+    font-size:15px;
+}
+
+/* Contact */
+.contact{
+    flex-direction:column;
+}
+
+form{
+    width:100%;
+    max-width:650px;
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(255,180,210,.2);
+}
+
+input,textarea{
+    width:100%;
+    padding:15px;
+    margin:12px 0;
+    border:2px solid #ffd6e5;
+    border-radius:15px;
+    outline:none;
+}
+
+textarea{
+    resize:none;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    background:#ff7eb3;
+    color:white;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:17px;
+    transition:.3s;
+}
+
+button:hover{
+    background:#ff5f9d;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:30px;
+    color:#888;
+}
+
+/* Fade Animation */
+.fade{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Responsive */
+@media(max-width:768px){
+
+header{
+    flex-direction:column;
+    gap:15px;
+}
+
+nav{
+    text-align:center;
+}
+
+nav a{
+    margin:0 10px;
+}
+
+.hero-text{
+    text-align:center;
+}
+
+.hero-text h1{
+    font-size:42px;
+}
+
+.photo-box{
+    width:260px;
+    height:260px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">พิมพ์นิภา เนียบเกิด</div>
+
+<nav>
+<a href="#home">หน้าแรก</a>
+<a href="#about">เกี่ยวกับ</a>
+<a href="#portfolio">ผลงาน</a>
+<a href="#contact">ติดต่อ</a>
+</nav>
+</header>
+
+<!-- หน้าแรก -->
+<section id="home">
+
+<div class="hero fade">
+
+<div class="hero-text">
+
+<h1>สวัสดีค่ะ 👋</h1>
+
+<h2>พิมพ์นิภา เนียบเกิด</h2>
+
+<p>
+ยินดีต้อนรับสู่เว็บไซต์ Portfolio
+พื้นที่สำหรับแนะนำตัว แสดงผลงาน และช่องทางการติดต่อ
+ด้วยสไตล์มินิมอลโทนสีชมพูหวานทันสมัย
+</p>
+
+<a href="#portfolio" class="btn">ดูผลงาน</a>
+
+</div>
+
+<div class="profile">
+
+<div class="photo-box">
+📷<br>วางรูปของคุณที่นี่
+<!- <img src=""
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- เกี่ยวกับ -->
+<section id="about" class="about fade">
+
+<h2 class="title">เกี่ยวกับ</h2>
+
+<div class="about-card">
+
+<p><b>ชื่อ :</b> พิมพ์นิภา เนียบเกิด</p>
+
+<p><b>การศึกษา :</b> ......................................</p>
+
+<p><b>ทักษะ :</b> HTML • CSS • JavaScript • Canva • Microsoft Office</p>
+
+<p><b>ความสามารถ :</b> สามารถออกแบบเว็บไซต์ พัฒนาเว็บไซต์ และเรียนรู้เทคโนโลยีใหม่ ๆ ได้อย่างรวดเร็ว</p>
+
+<p><b>เป้าหมาย :</b> ต้องการพัฒนาทักษะด้านการออกแบบและพัฒนาเว็บไซต์ให้มีความทันสมัยและใช้งานได้จริง</p>
+
+</div>
+
+</section>
+
+<!-- ผลงาน -->
+<section id="portfolio" class="portfolio fade">
+
+<h2 class="title">ผลงาน</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="project-img">
+พื้นที่ใส่รูปผลงาน
+</div>
+
+<div class="card-body">
+<h3>Project 01</h3>
+<p>รายละเอียดผลงาน สามารถแก้ไขข้อความนี้ได้</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="project-img">
+พื้นที่ใส่รูปผลงาน
+</div>
+
+<div class="card-body">
+<h3>Project 02</h3>
+<p>รายละเอียดผลงาน สามารถแก้ไขข้อความนี้ได้</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="project-img">
+พื้นที่ใส่รูปผลงาน
+</div>
+
+<div class="card-body">
+<h3>Project 03</h3>
+<p>รายละเอียดผลงาน สามารถแก้ไขข้อความนี้ได้</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ติดต่อ -->
+<section id="contact" class="contact fade">
+
+<h2 class="title">ติดต่อ</h2>
+
+<form>
+
+<input type="text" placeholder="ชื่อ">
+
+<input type="email" placeholder="อีเมล">
+
+<input type="text" placeholder="เบอร์โทร">
+
+<textarea rows="6" placeholder="ข้อความ"></textarea>
+
+<button>ส่งข้อความ</button>
+
+</form>
+
+</section>
+
+<footer>
+© 2026 Portfolio | พิมพ์นิภา เนียบเกิด
+</footer>
+
+<script>
+// Fade In Animation
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{
+threshold:0.2
+});
+
+document.querySelectorAll(".fade").forEach(el=>{
+observer.observe(el);
+});
+
+// ปุ่มส่งฟอร์ม
+document.querySelector("form").addEventListener("submit",function(e){
+e.preventDefault();
+alert("ส่งข้อความเรียบร้อย 💖");
+this.reset();
+});
+</script>
+
+</body>
+</html>
