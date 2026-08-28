@@ -1,480 +1,1660 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>พิมพ์นิภา เนียบเกิด | Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+    <title>Portfolio | พิมพ์นิภา เนียมเกิด</title>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Prompt',sans-serif;
-    scroll-behavior:smooth;
-}
+    <!-- =========================================================
+         GOOGLE FONT
+         ========================================================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-body{
-    background:#fff7fa;
-    color:#444;
-}
+    <!-- =========================================================
+         CSS
+         ========================================================= -->
+    <style>
 
-/* Scrollbar */
-::-webkit-scrollbar{
-    width:8px;
-}
-::-webkit-scrollbar-thumb{
-    background:#ff8fb6;
-    border-radius:20px;
-}
+        /* ---------- RESET ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Navbar */
-header{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding:18px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(255,255,255,.85);
-    backdrop-filter:blur(15px);
-    box-shadow:0 3px 12px rgba(255,170,200,.15);
-    z-index:999;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.logo{
-    font-size:25px;
-    font-weight:700;
-    color:#ff5f9d;
-}
+        body {
+            font-family: "Kanit", sans-serif;
+            color: #49353f;
+            background: #fff9fc;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
 
-nav a{
-    margin-left:28px;
-    text-decoration:none;
-    color:#666;
-    font-weight:500;
-    transition:.3s;
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-nav a:hover{
-    color:#ff5f9d;
-}
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-/* ทุก Section */
-section{
-    min-height:100vh;
-    padding:120px 10%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+        /* ---------- VARIABLES ---------- */
+        :root {
+            --pink: #e98caf;
+            --pink-dark: #d96f98;
+            --pink-light: #ffe4ee;
+            --pink-soft: #fff2f7;
+            --white: #ffffff;
+            --text: #49353f;
+            --text-light: #806b74;
+            --shadow: 0 15px 40px rgba(211, 113, 148, 0.13);
+            --radius: 24px;
+        }
 
-/* Hero */
-.hero{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:60px;
-    align-items:center;
-}
+        /* ---------- CONTAINER ---------- */
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
 
-.hero-text h1{
-    font-size:55px;
-    color:#ff5f9d;
-    line-height:1.2;
-}
+        /* ---------- NAVBAR ---------- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 249, 252, 0.88);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(233, 140, 175, 0.15);
+        }
 
-.hero-text h2{
-    font-size:24px;
-    color:#777;
-    margin:15px 0;
-}
+        .nav-container {
+            width: min(1150px, 92%);
+            margin: auto;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.hero-text p{
-    color:#777;
-    line-height:1.8;
-    margin:25px 0;
-}
+        .logo {
+            font-family: "Mitr", sans-serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--pink-dark);
+        }
 
-.btn{
-    display:inline-block;
-    padding:14px 35px;
-    background:#ff7eb3;
-    color:white;
-    border-radius:50px;
-    text-decoration:none;
-    transition:.35s;
-    box-shadow:0 8px 25px rgba(255,126,179,.3);
-}
+        .logo span {
+            color: #f4b4ca;
+        }
 
-.btn:hover{
-    transform:translateY(-5px);
-    background:#ff5f9d;
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
 
-/* รูปโปรไฟล์ */
-.profile{
-    display:flex;
-    justify-content:center;
-}
+        .nav-menu a {
+            font-size: 0.95rem;
+            color: var(--text);
+            position: relative;
+            transition: 0.3s;
+        }
 
-.photo-box{
-    width:320px;
-    height:320px;
-    border:4px dashed #ff9fc6;
-    border-radius:30px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#fff;
-    color:#ff7eb3;
-    text-align:center;
-    font-size:18px;
-    overflow:hidden;
-    box-shadow:0 15px 35px rgba(255,170,200,.25);
-}
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--pink);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
 
-.photo-box img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+        .nav-menu a:hover {
+            color: var(--pink-dark);
+        }
 
-/* Title */
-.title{
-    text-align:center;
-    font-size:42px;
-    color:#ff5f9d;
-    margin-bottom:50px;
-}
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
 
-/* About */
-.about{
-    flex-direction:column;
-}
+        /* ---------- MOBILE MENU BUTTON ---------- */
+        .menu-toggle {
+            display: none;
+            border: none;
+            background: var(--pink-light);
+            color: var(--pink-dark);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
 
-.about-card{
-    max-width:900px;
-    background:white;
-    padding:40px;
-    border-radius:25px;
-    box-shadow:0 10px 30px rgba(255,180,210,.2);
-    line-height:2;
-    color:#666;
-}
+        /* ---------- HERO ---------- */
+        .hero {
+            min-height: calc(100vh - 72px);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 10% 20%, #ffe1ec 0, transparent 25%),
+                radial-gradient(circle at 90% 80%, #ffe8f0 0, transparent 25%),
+                #fff9fc;
+        }
 
-/* Portfolio */
-.portfolio{
-    flex-direction:column;
-}
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 50px;
+            padding: 70px 0;
+        }
 
-.grid{
-    width:100%;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-    gap:25px;
-}
+        .hero-badge {
+            display: inline-block;
+            padding: 7px 17px;
+            border-radius: 30px;
+            background: var(--pink-light);
+            color: var(--pink-dark);
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
 
-.card{
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 10px 25px rgba(255,190,220,.2);
-    transition:.4s;
-}
+        .hero h1 {
+            font-family: "Mitr", sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.15;
+            color: #4a3440;
+            margin-bottom: 15px;
+        }
 
-.card:hover{
-    transform:translateY(-10px);
-}
+        .hero h1 span {
+            color: var(--pink-dark);
+        }
 
-.project-img{
-    height:190px;
-    border-bottom:2px dashed #ffd0e1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#ff6fa8;
-    background:#fff8fb;
-}
+        .typing {
+            font-size: 1.35rem;
+            color: var(--text-light);
+            min-height: 42px;
+            margin-bottom: 15px;
+        }
 
-.card-body{
-    padding:20px;
-}
+        .cursor {
+            color: var(--pink);
+            animation: blink 0.7s infinite;
+        }
 
-.card-body h3{
-    color:#ff5f9d;
-}
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
 
-.card-body p{
-    margin-top:10px;
-    color:#777;
-    font-size:15px;
-}
+        .hero-description {
+            color: var(--text-light);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
 
-/* Contact */
-.contact{
-    flex-direction:column;
-}
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
 
-form{
-    width:100%;
-    max-width:650px;
-    background:white;
-    padding:35px;
-    border-radius:25px;
-    box-shadow:0 10px 30px rgba(255,180,210,.2);
-}
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+        }
 
-input,textarea{
-    width:100%;
-    padding:15px;
-    margin:12px 0;
-    border:2px solid #ffd6e5;
-    border-radius:15px;
-    outline:none;
-}
+        .btn-primary {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 10px 25px rgba(217, 111, 152, 0.25);
+        }
 
-textarea{
-    resize:none;
-}
+        .btn-primary:hover {
+            background: var(--pink-dark);
+            transform: translateY(-3px);
+        }
 
-button{
-    width:100%;
-    padding:15px;
-    border:none;
-    background:#ff7eb3;
-    color:white;
-    border-radius:15px;
-    cursor:pointer;
-    font-size:17px;
-    transition:.3s;
-}
+        .btn-outline {
+            border: 1px solid #efb0c8;
+            color: var(--pink-dark);
+            background: white;
+        }
 
-button:hover{
-    background:#ff5f9d;
-}
+        .btn-outline:hover {
+            background: var(--pink-soft);
+            transform: translateY(-3px);
+        }
 
-/* Footer */
-footer{
-    text-align:center;
-    padding:30px;
-    color:#888;
-}
+        /* ---------- HERO CARD ---------- */
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
 
-/* Fade Animation */
-.fade{
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s;
-}
+        .profile-card {
+            width: 320px;
+            height: 390px;
+            background: linear-gradient(145deg, #ffd9e7, #fff0f6);
+            border-radius: 45% 45% 35% 35%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            animation: floating 4s ease-in-out infinite;
+        }
 
-.fade.show{
-    opacity:1;
-    transform:translateY(0);
-}
+        .profile-card-inner {
+            width: 235px;
+            height: 235px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            box-shadow: 0 10px 30px rgba(217, 111, 152, 0.15);
+        }
 
-/* Responsive */
-@media(max-width:768px){
+        .floating-heart {
+            position: absolute;
+            color: var(--pink);
+            font-size: 2rem;
+            animation: heartFloat 3s ease-in-out infinite;
+        }
 
-header{
-    flex-direction:column;
-    gap:15px;
-}
+        .heart-1 {
+            top: 45px;
+            right: 20px;
+        }
 
-nav{
-    text-align:center;
-}
+        .heart-2 {
+            bottom: 70px;
+            left: 10px;
+            animation-delay: 1s;
+        }
 
-nav a{
-    margin:0 10px;
-}
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
 
-.hero-text{
-    text-align:center;
-}
+            50% {
+                transform: translateY(-12px);
+            }
+        }
 
-.hero-text h1{
-    font-size:42px;
-}
+        @keyframes heartFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
 
-.photo-box{
-    width:260px;
-    height:260px;
-}
+            50% {
+                transform: translateY(-12px) rotate(5deg);
+            }
+        }
 
-}
-</style>
+        /* ---------- SECTION ---------- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title .small-title {
+            color: var(--pink-dark);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .section-title h2 {
+            font-family: "Mitr", sans-serif;
+            font-size: 2.4rem;
+            margin-top: 4px;
+            color: #49353f;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-decoration {
+            min-height: 380px;
+            background: var(--pink-soft);
+            border-radius: 35px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .about-decoration::before {
+            content: "";
+            width: 250px;
+            height: 250px;
+            background: #ffd9e7;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .about-emoji {
+            font-size: 7rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-info h3 {
+            font-family: "Mitr", sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .about-info p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .info-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .info-item {
+            padding: 15px;
+            border-radius: 15px;
+            background: var(--pink-soft);
+        }
+
+        .info-item strong {
+            display: block;
+            color: var(--pink-dark);
+            font-size: 0.85rem;
+        }
+
+        .info-item span {
+            font-size: 0.95rem;
+        }
+
+        /* ---------- SKILLS ---------- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .skill-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 17px;
+            background: var(--pink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin-bottom: 18px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 8px;
+            font-family: "Mitr", sans-serif;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #f7e7ed;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #e98caf, #f5b5cd);
+            border-radius: 20px;
+            transition: width 1.5s ease;
+        }
+
+        /* ---------- PROJECTS ---------- */
+        .projects {
+            background: white;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #fff9fc;
+            border: 1px solid #f8e0e9;
+            border-radius: var(--radius);
+            padding: 30px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow);
+        }
+
+        .project-number {
+            color: #f2c2d4;
+            font-size: 3rem;
+            font-weight: 600;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-family: "Mitr", sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            padding-right: 40px;
+        }
+
+        .project-card p {
+            color: var(--text-light);
+            font-size: 0.92rem;
+        }
+
+        /* ---------- ACTIVITIES ---------- */
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #f5cad9;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 35px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 8px;
+            top: 5px;
+            width: 23px;
+            height: 23px;
+            border-radius: 50%;
+            background: var(--pink);
+            border: 5px solid #ffe7ef;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-content .year {
+            color: var(--pink-dark);
+            font-size: 0.85rem;
+        }
+
+        .timeline-content h3 {
+            font-family: "Mitr", sans-serif;
+            margin: 5px 0;
+        }
+
+        .timeline-content p {
+            color: var(--text-light);
+            font-size: 0.92rem;
+        }
+
+        /* ---------- GOAL ---------- */
+        .goal {
+            background: linear-gradient(135deg, #ffe4ee, #fff6f9);
+        }
+
+        .goal-box {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+            padding: 55px 30px;
+        }
+
+        .goal-icon {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .goal-box h2 {
+            font-family: "Mitr", sans-serif;
+            font-size: 2.1rem;
+            color: var(--pink-dark);
+            margin-bottom: 12px;
+        }
+
+        .goal-box p {
+            color: var(--text-light);
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact {
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .contact-text h3 {
+            font-family: "Mitr", sans-serif;
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .contact-text p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .contact-card {
+            background: var(--pink-soft);
+            border-radius: 25px;
+            padding: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 15px;
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: var(--pink-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .contact-item small {
+            display: block;
+            color: #a08b94;
+        }
+
+        .contact-item strong {
+            color: var(--text);
+            font-weight: 500;
+            word-break: break-word;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: #4b3540;
+            color: #fff;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        footer p {
+            color: #eacbd6;
+            font-size: 0.9rem;
+        }
+
+        .footer-heart {
+            color: #f19cba;
+        }
+
+        /* ---------- FADE IN ANIMATION ---------- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- SCROLL TO TOP ---------- */
+        .top-btn {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 50%;
+            background: var(--pink);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(217, 111, 152, 0.25);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 999;
+        }
+
+        .top-btn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .top-btn:hover {
+            background: var(--pink-dark);
+            transform: translateY(-3px);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
+        @media (max-width: 850px) {
+
+            .nav-menu {
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 249, 252, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+                padding: 15px 0;
+                box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 12px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .profile-card {
+                width: 270px;
+                height: 320px;
+            }
+
+            .profile-card-inner {
+                width: 190px;
+                height: 190px;
+                font-size: 5rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            section {
+                padding: 75px 0;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 55px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.7rem;
+            }
+
+            .typing {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+
+            .about-decoration {
+                min-height: 280px;
+            }
+
+            .profile-card {
+                width: 230px;
+                height: 280px;
+            }
+
+            .profile-card-inner {
+                width: 165px;
+                height: 165px;
+                font-size: 4rem;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .timeline-item {
+                padding-left: 48px;
+            }
+
+            .timeline::before {
+                left: 15px;
+            }
+
+            .timeline-dot {
+                left: 4px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<header>
-<div class="logo">พิมพ์นิภา เนียบเกิด</div>
+    <!-- =========================================================
+         NAVIGATION
+         ========================================================= -->
+    <nav class="navbar">
+        <div class="nav-container">
 
-<nav>
-<a href="#home">หน้าแรก</a>
-<a href="#about">เกี่ยวกับ</a>
-<a href="#portfolio">ผลงาน</a>
-<a href="#contact">ติดต่อ</a>
-</nav>
-</header>
+            <a href="#home" class="logo">
+                Pim<span>♡</span>
+            </a>
 
-<!-- หน้าแรก -->
-<section id="home">
+            <button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู">
+                ☰
+            </button>
 
-<div class="hero fade">
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">หน้าแรก</a></li>
+                <li><a href="#about">เกี่ยวกับฉัน</a></li>
+                <li><a href="#skills">ทักษะ</a></li>
+                <li><a href="#projects">ผลงาน</a></li>
+                <li><a href="#activities">กิจกรรม</a></li>
+                <li><a href="#contact">ติดต่อ</a></li>
+            </ul>
 
-<div class="hero-text">
+        </div>
+    </nav>
 
-<h1>สวัสดีค่ะ 👋</h1>
 
-<h2>พิมพ์นิภา เนียบเกิด</h2>
+    <!-- =========================================================
+         HERO SECTION
+         ========================================================= -->
+    <header class="hero" id="home">
 
-<p>
-ยินดีต้อนรับสู่เว็บไซต์ Portfolio
-พื้นที่สำหรับแนะนำตัว แสดงผลงาน และช่องทางการติดต่อ
-ด้วยสไตล์มินิมอลโทนสีชมพูหวานทันสมัย
-</p>
+        <div class="container hero-content">
 
-<a href="#portfolio" class="btn">ดูผลงาน</a>
+            <div class="hero-text fade-in">
 
-</div>
+                <span class="hero-badge">
+                    ✨ Welcome to my Portfolio
+                </span>
 
-<div class="profile">
+                <h1>
+                    สวัสดีค่ะ<br>
+                    <span>พิมพ์นิภา</span>
+                </h1>
 
-<div class="photo-box">
-📷<br>วางรูปของคุณที่นี่
-<!- <img src=""
-</div>
+                <div class="typing">
+                    <span id="typingText"></span>
+                    <span class="cursor">|</span>
+                </div>
 
-</div>
+                <p class="hero-description">
+                    นักเรียนมัธยมปลายที่มีความสนใจด้านการแสดง
+                    ชอบเรียนรู้สิ่งใหม่ ๆ และกล้าที่จะก้าวออกจาก Comfort Zone
+                    เพื่อพัฒนาตัวเองอยู่เสมอ
+                </p>
 
-</div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        💌 ติดต่อฉัน
+                    </a>
 
-</section>
+                    <a href="#projects" class="btn btn-outline">
+                        ✨ ดูผลงาน
+                    </a>
+                </div>
 
-<!-- เกี่ยวกับ -->
-<section id="about" class="about fade">
+            </div>
 
-<h2 class="title">เกี่ยวกับ</h2>
 
-<div class="about-card">
+            <div class="hero-visual fade-in">
 
-<p><b>ชื่อ :</b> พิมพ์นิภา เนียบเกิด</p>
+                <div class="profile-card">
 
-<p><b>การศึกษา :</b> ......................................</p>
+                    <div class="profile-card-inner">
+                        🎀
+                    </div>
 
-<p><b>ทักษะ :</b> HTML • CSS • JavaScript • Canva • Microsoft Office</p>
+                    <div class="floating-heart heart-1">
+                        ♡
+                    </div>
 
-<p><b>ความสามารถ :</b> สามารถออกแบบเว็บไซต์ พัฒนาเว็บไซต์ และเรียนรู้เทคโนโลยีใหม่ ๆ ได้อย่างรวดเร็ว</p>
+                    <div class="floating-heart heart-2">
+                        ♥
+                    </div>
 
-<p><b>เป้าหมาย :</b> ต้องการพัฒนาทักษะด้านการออกแบบและพัฒนาเว็บไซต์ให้มีความทันสมัยและใช้งานได้จริง</p>
+                </div>
 
-</div>
+            </div>
 
-</section>
+        </div>
 
-<!-- ผลงาน -->
-<section id="portfolio" class="portfolio fade">
+    </header>
 
-<h2 class="title">ผลงาน</h2>
 
-<div class="grid">
+    <!-- =========================================================
+         ABOUT ME
+         ========================================================= -->
+    <section class="about" id="about">
 
-<div class="card">
+        <div class="container">
 
-<div class="project-img">
-พื้นที่ใส่รูปผลงาน
-</div>
+            <div class="section-title fade-in">
+                <div class="small-title">ABOUT ME</div>
+                <h2>เกี่ยวกับฉัน 🌷</h2>
+                <p>มาทำความรู้จักกับพิมพ์กันนะคะ</p>
+            </div>
 
-<div class="card-body">
-<h3>Project 01</h3>
-<p>รายละเอียดผลงาน สามารถแก้ไขข้อความนี้ได้</p>
-</div>
 
-</div>
+            <div class="about-grid">
 
-<div class="card">
+                <div class="about-decoration fade-in">
+                    <div class="about-emoji">
+                        🎭
+                    </div>
+                </div>
 
-<div class="project-img">
-พื้นที่ใส่รูปผลงาน
-</div>
 
-<div class="card-body">
-<h3>Project 02</h3>
-<p>รายละเอียดผลงาน สามารถแก้ไขข้อความนี้ได้</p>
-</div>
+                <div class="about-info fade-in">
 
-</div>
+                    <h3>
+                        สวัสดีค่ะ เราชื่อพิมพ์ 💗
+                    </h3>
 
-<div class="card">
+                    <p>
+                        พิมพ์เป็นนักเรียนชั้นมัธยมศึกษาปีที่ 4
+                        ที่มีความสนใจและชื่นชอบการแสดง
+                        เป็นคนที่กล้าแสดงออก ชอบกิจกรรมที่ได้พบเจอผู้คน
+                        และพร้อมที่จะเรียนรู้ประสบการณ์ใหม่ ๆ
+                    </p>
 
-<div class="project-img">
-พื้นที่ใส่รูปผลงาน
-</div>
+                    <p>
+                        ความฝันของพิมพ์คือการได้พัฒนาตัวเอง
+                        จนสามารถเป็นอินฟลูเอนเซอร์ที่มีชื่อเสียง
+                        และใช้ความสามารถในการสร้างแรงบันดาลใจให้กับคนอื่น
+                    </p>
 
-<div class="card-body">
-<h3>Project 03</h3>
-<p>รายละเอียดผลงาน สามารถแก้ไขข้อความนี้ได้</p>
-</div>
 
-</div>
+                    <div class="info-list">
 
-</div>
+                        <div class="info-item">
+                            <strong>ชื่อ</strong>
+                            <span>นางสาวพิมพ์นิภา เนียมเกิด</span>
+                        </div>
 
-</section>
+                        <div class="info-item">
+                            <strong>ชื่อเล่น</strong>
+                            <span>พิมพ์</span>
+                        </div>
 
-<!-- ติดต่อ -->
-<section id="contact" class="contact fade">
+                        <div class="info-item">
+                            <strong>ระดับชั้น</strong>
+                            <span>ม.4/7</span>
+                        </div>
 
-<h2 class="title">ติดต่อ</h2>
+                        <div class="info-item">
+                            <strong>โรงเรียน</strong>
+                            <span>สามร้อยยอดวิทยาคม</span>
+                        </div>
 
-<form>
+                    </div>
 
-<input type="text" placeholder="ชื่อ">
+                </div>
 
-<input type="email" placeholder="อีเมล">
+            </div>
 
-<input type="text" placeholder="เบอร์โทร">
+        </div>
 
-<textarea rows="6" placeholder="ข้อความ"></textarea>
+    </section>
 
-<button>ส่งข้อความ</button>
 
-</form>
+    <!-- =========================================================
+         SKILLS
+         ========================================================= -->
+    <section id="skills">
 
-</section>
+        <div class="container">
 
-<footer>
-© 2026 Portfolio | พิมพ์นิภา เนียบเกิด
-</footer>
+            <div class="section-title fade-in">
+                <div class="small-title">MY SKILLS</div>
+                <h2>ทักษะของฉัน 💕</h2>
+                <p>สิ่งที่พิมพ์ชอบและกำลังพัฒนาอยู่</p>
+            </div>
 
-<script>
-// Fade In Animation
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("show");
-}
-});
-},{
-threshold:0.2
-});
 
-document.querySelectorAll(".fade").forEach(el=>{
-observer.observe(el);
-});
+            <div class="skills-grid">
 
-// ปุ่มส่งฟอร์ม
-document.querySelector("form").addEventListener("submit",function(e){
-e.preventDefault();
-alert("ส่งข้อความเรียบร้อย 💖");
-this.reset();
-});
-</script>
+                <div class="skill-card fade-in">
+
+                    <div class="skill-icon">
+                        🎤
+                    </div>
+
+                    <h3>กล้าแสดงออก</h3>
+
+                    <p>
+                        กล้าที่จะพูด นำเสนอ และแสดงความสามารถต่อหน้าผู้อื่น
+                    </p>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card fade-in">
+
+                    <div class="skill-icon">
+                        🎭
+                    </div>
+
+                    <h3>การแสดง</h3>
+
+                    <p>
+                        มีความสนใจในการแสดงและการสื่อสารผ่านบทบาทต่าง ๆ
+                    </p>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-card fade-in">
+
+                    <div class="skill-icon">
+                        💡
+                    </div>
+
+                    <h3>ความคิดสร้างสรรค์</h3>
+
+                    <p>
+                        ชอบคิดไอเดียใหม่ ๆ และนำมาประยุกต์ใช้กับงาน
+                    </p>
+
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="80%"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PROJECTS
+         ========================================================= -->
+    <section class="projects" id="projects">
+
+        <div class="container">
+
+            <div class="section-title fade-in">
+                <div class="small-title">MY PROJECTS</div>
+                <h2>ผลงานที่ภาคภูมิใจ 🏆</h2>
+                <p>ประสบการณ์ที่ช่วยให้พิมพ์เติบโตขึ้น</p>
+            </div>
+
+
+            <div class="project-grid">
+
+                <div class="project-card fade-in">
+
+                    <div class="project-number">
+                        01
+                    </div>
+
+                    <div class="project-icon">
+                        🧑‍⚕️
+                    </div>
+
+                    <h3>
+                        ตัวแทนยุวทูต อย.น้อย
+                    </h3>
+
+                    <p>
+                        เป็นตัวแทนยุวทูต อย.น้อย ระดับจังหวัด
+                        ประจวบคีรีขันธ์ ได้มีโอกาสเรียนรู้
+                        และทำกิจกรรมเกี่ยวกับการส่งเสริมความรู้ด้านสุขภาพ
+                        และการใช้ผลิตภัณฑ์สุขภาพอย่างเหมาะสม
+                    </p>
+
+                </div>
+
+
+                <div class="project-card fade-in">
+
+                    <div class="project-number">
+                        02
+                    </div>
+
+                    <div class="project-icon">
+                        🎬
+                    </div>
+
+                    <h3>
+                        การประกวดหนังสั้นเกี่ยวกับยาเสพติด
+                    </h3>
+
+                    <p>
+                        เข้าร่วมการประกวดหนังสั้นเกี่ยวกับยาเสพติด
+                        ระดับมัธยมต้น และได้รับรางวัล
+                        <strong>ชนะเลิศอันดับที่ 1</strong>
+                        จากการแข่งขัน
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         ACTIVITIES & ACHIEVEMENTS
+         ========================================================= -->
+    <section id="activities">
+
+        <div class="container">
+
+            <div class="section-title fade-in">
+                <div class="small-title">ACTIVITIES & ACHIEVEMENTS</div>
+                <h2>กิจกรรม & ความสำเร็จ ✨</h2>
+                <p>ทุกประสบการณ์คืออีกหนึ่งก้าวของการเติบโต</p>
+            </div>
+
+
+            <div class="timeline">
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <span class="year">
+                            🏅 Achievement
+                        </span>
+
+                        <h3>
+                            รางวัลชนะเลิศอันดับที่ 1
+                        </h3>
+
+                        <p>
+                            การประกวดหนังสั้นเกี่ยวกับยาเสพติด
+                            ระดับมัธยมต้น
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <span class="year">
+                            🌟 Activity
+                        </span>
+
+                        <h3>
+                            ตัวแทนยุวทูต อย.น้อย
+                        </h3>
+
+                        <p>
+                            ได้รับโอกาสเป็นตัวแทนยุวทูต อย.น้อย
+                            ระดับจังหวัดประจวบคีรีขันธ์
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline-item fade-in">
+
+                    <div class="timeline-dot"></div>
+
+                    <div class="timeline-content">
+
+                        <span class="year">
+                            🎭 Interest
+                        </span>
+
+                        <h3>
+                            ความสนใจด้านการแสดง
+                        </h3>
+
+                        <p>
+                            มุ่งมั่นพัฒนาทักษะการแสดง
+                            การพูด และการนำเสนอต่อหน้าผู้คน
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FUTURE GOAL
+         ========================================================= -->
+    <section class="goal">
+
+        <div class="container">
+
+            <div class="goal-box fade-in">
+
+                <div class="goal-icon">
+                    🌟
+                </div>
+
+                <h2>
+                    My Future Goal
+                </h2>
+
+                <p>
+                    เป้าหมายในอนาคตของพิมพ์คือ
+                    <strong>“อยากเป็นอินฟลูเอนเซอร์ชื่อดัง”</strong>
+                    อยากสร้างผลงานที่เป็นตัวของตัวเอง
+                    พัฒนาความสามารถด้านการสื่อสารและการแสดง
+                    และส่งต่อพลังบวกให้กับผู้คนผ่านผลงานของตัวเอง 💗
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTACT
+         ========================================================= -->
+    <section class="contact" id="contact">
+
+        <div class="container">
+
+            <div class="section-title fade-in">
+                <div class="small-title">CONTACT ME</div>
+                <h2>มาคุยกันนะคะ 💌</h2>
+                <p>สามารถติดต่อพิมพ์ได้ผ่านช่องทางด้านล่าง</p>
+            </div>
+
+
+            <div class="contact-grid">
+
+                <div class="contact-text fade-in">
+
+                    <h3>
+                        Let's Connect! 💕
+                    </h3>
+
+                    <p>
+                        หากสนใจติดต่อ สอบถาม หรืออยากพูดคุย
+                        สามารถติดต่อพิมพ์ได้ตามช่องทางนี้เลยค่ะ
+                    </p>
+
+                    <a href="mailto:impx839@gmail.com" class="btn btn-primary">
+                        ✉️ ส่งอีเมล
+                    </a>
+
+                </div>
+
+
+                <div class="contact-card fade-in">
+
+                    <a href="mailto:impx839@gmail.com" class="contact-item">
+
+                        <div class="contact-icon">
+                            ✉️
+                        </div>
+
+                        <div>
+                            <small>Email</small>
+                            <strong>impx839@gmail.com</strong>
+                        </div>
+
+                    </a>
+
+
+                    <a href="tel:0801847245" class="contact-item">
+
+                        <div class="contact-icon">
+                            📱
+                        </div>
+
+                        <div>
+                            <small>โทรศัพท์</small>
+                            <strong>080-184-7245</strong>
+                        </div>
+
+                    </a>
+
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            🏫
+                        </div>
+
+                        <div>
+                            <small>โรงเรียน</small>
+                            <strong>โรงเรียนสามร้อยยอดวิทยาคม</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+    <footer>
+
+        <p>
+            © 2026 Pim Portfolio
+            <span class="footer-heart">♥</span>
+            Made with love
+        </p>
+
+    </footer>
+
+
+    <!-- =========================================================
+         SCROLL TO TOP BUTTON
+         ========================================================= -->
+    <button class="top-btn" id="topBtn" aria-label="กลับด้านบน">
+        ↑
+    </button>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+    <script>
+
+        /* ========================================================
+           MOBILE NAVIGATION
+           ======================================================== */
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+
+
+        /* ปิดเมนูเมื่อคลิกลิงก์ */
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("active");
+            });
+
+        });
+
+
+        /* ========================================================
+           TYPING EFFECT
+           ======================================================== */
+
+        const typingText = document.getElementById("typingText");
+
+        const texts = [
+            "นักเรียน ม.4/7 ✨",
+            "ผู้ที่รักการแสดง 🎭",
+            "คนที่กล้าแสดงออก 💕",
+            "Future Influencer 🌟"
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+
+            const currentText = texts[textIndex];
+
+            if (!isDeleting) {
+
+                typingText.textContent =
+                    currentText.substring(0, charIndex + 1);
+
+                charIndex++;
+
+                if (charIndex === currentText.length) {
+
+                    isDeleting = true;
+
+                    setTimeout(typeEffect, 1500);
+                    return;
+                }
+
+            } else {
+
+                typingText.textContent =
+                    currentText.substring(0, charIndex - 1);
+
+                charIndex--;
+
+                if (charIndex === 0) {
+
+                    isDeleting = false;
+
+                    textIndex++;
+
+                    if (textIndex >= texts.length) {
+                        textIndex = 0;
+                    }
+                }
+            }
+
+            const speed = isDeleting ? 45 : 90;
+
+            setTimeout(typeEffect, speed);
+        }
+
+        typeEffect();
+
+
+        /* ========================================================
+           FADE-IN ON SCROLL
+           ======================================================== */
+
+        const fadeElements = document.querySelectorAll(".fade-in");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("show");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+
+
+        /* ========================================================
+           SKILL BAR ANIMATION
+           ======================================================== */
+
+        const skillSection = document.getElementById("skills");
+
+        const skillObserver = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        document
+                            .querySelectorAll(".skill-progress")
+                            .forEach(bar => {
+
+                                bar.style.width =
+                                    bar.dataset.width;
+
+                            });
+
+                        skillObserver.disconnect();
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.25
+            }
+        );
+
+        skillObserver.observe(skillSection);
+
+
+        /* ========================================================
+           SCROLL TO TOP
+           ======================================================== */
+
+        const topBtn = document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 500) {
+                topBtn.classList.add("show");
+            } else {
+                topBtn.classList.remove("show");
+            }
+
+        });
+
+        topBtn.addEventListener("click", () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        });
+
+
+        /* ========================================================
+           NAVBAR SHADOW WHEN SCROLLING
+           ======================================================== */
+
+        const navbar = document.querySelector(".navbar");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 10) {
+
+                navbar.style.boxShadow =
+                    "0 8px 25px rgba(210, 110, 145, 0.08)";
+
+            } else {
+
+                navbar.style.boxShadow = "none";
+
+            }
+
+        });
+
+    </script>
 
 </body>
 </html>
